@@ -1,0 +1,31 @@
+# docker-compose.yml — ms-bs-huelli (producción)
+# Requiere que la red externa "huelli-network" ya exista — la crea
+# huelli_database/docker-compose.yml (contenedor huelli-postgres, alias "postgres").
+# Uso: docker compose up -d --build
+
+services:
+  ms-bs-huelli:
+    build: .
+    container_name: ms-bs-huelli
+    ports:
+      - "${PORT:-10420}:${PORT:-10420}"
+      - "${SSL_PORT:-20420}:${SSL_PORT:-20420}"
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      # DB_HOST del .env (localhost) solo sirve fuera de Docker.
+      # Dentro del contenedor se resuelve por el alias de red "postgres".
+      DB_HOST: postgres
+    networks:
+      - huelli-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT:-10420}/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  huelli-network:
+    external: true
+    name: huelli-network

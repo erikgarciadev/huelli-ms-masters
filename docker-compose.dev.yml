@@ -1,0 +1,31 @@
+# docker-compose.dev.yml — ms-bs-huelli (desarrollo local)
+# Requiere levantar primero huelli_database/docker-compose.yml
+# (crea la red externa "huelli-network" + Postgres, alias "postgres").
+# Uso: docker compose -f docker-compose.dev.yml up -d --build
+#
+# Diferencia con docker-compose.yml (producción): NODE_ENV=development
+# (habilita Swagger en /api/docs — ver src/main.ts).
+
+services:
+  ms-bs-huelli:
+    build: .
+    container_name: ms-bs-huelli-dev
+    ports:
+      - "${PORT:-10420}:${PORT:-10420}"
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      DB_HOST: postgres
+    networks:
+      - huelli-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT:-10420}/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  huelli-network:
+    external: true
+    name: huelli-network
