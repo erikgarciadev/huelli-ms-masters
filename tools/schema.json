@@ -1,0 +1,2990 @@
+{
+  "tables": [
+    {
+      "table_name": "api_tokens",
+      "entityName": "ApiToken",
+      "routePath": "api-tokens",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "token_hash",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "scopes",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "expires_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "revoked_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "last_used_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "auth_providers",
+      "entityName": "AuthProvider",
+      "routePath": "auth-providers",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_business_hours",
+      "entityName": "CompanyBusinessHour",
+      "routePath": "company-business-hours",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_location_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "day_of_week",
+          "nullable": false,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "open_time",
+          "nullable": false,
+          "default": null,
+          "typeorm": "time",
+          "ts": "string"
+        },
+        {
+          "name": "close_time",
+          "nullable": false,
+          "default": null,
+          "typeorm": "time",
+          "ts": "string"
+        },
+        {
+          "name": "is_closed",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_categories",
+      "entityName": "CompanyCategory",
+      "routePath": "company-categories",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "icon",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "color",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 20
+        },
+        {
+          "name": "sort_order",
+          "nullable": true,
+          "default": "0",
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_contacts",
+      "entityName": "CompanyContact",
+      "routePath": "company-contacts",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "contact_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "position",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "phone",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "email",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_gallery",
+      "entityName": "CompanyGallery",
+      "routePath": "company-galleries",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "image_url",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "title",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "sort_order",
+          "nullable": true,
+          "default": "0",
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_locations",
+      "entityName": "CompanyLocation",
+      "routePath": "company-locations",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "country_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "department_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "district_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "latitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "longitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "is_main",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_profiles",
+      "entityName": "CompanyProfile",
+      "routePath": "company-profiles",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": true,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "category_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "verification_status_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "website",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "year_started",
+          "nullable": true,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "logo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "deleted_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_reviews",
+      "entityName": "CompanyReview",
+      "routePath": "company-reviews",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "rating",
+          "nullable": false,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "comment",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "company_services",
+      "entityName": "CompanyService",
+      "routePath": "company-services",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "price",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 2
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "countries",
+      "entityName": "Country",
+      "routePath": "countries",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "iso2",
+          "nullable": false,
+          "default": null,
+          "typeorm": "char",
+          "ts": "string",
+          "length": 2
+        },
+        {
+          "name": "iso3",
+          "nullable": true,
+          "default": null,
+          "typeorm": "char",
+          "ts": "string",
+          "length": 3
+        },
+        {
+          "name": "numeric_code",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 5
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "departments",
+      "entityName": "Department",
+      "routePath": "departments",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "country_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 20
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "districts",
+      "entityName": "District",
+      "routePath": "districts",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "department_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 20
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "latitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "longitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "identities",
+      "entityName": "Identity",
+      "routePath": "identities",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": true,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "provider_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "provider_user_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "login_identifier",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "password_hash",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "is_primary",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "last_login_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "deleted_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "login_audit",
+      "entityName": "LoginAudit",
+      "routePath": "login-audits",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "provider_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "login_identifier",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "success",
+          "nullable": false,
+          "default": null,
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "ip_address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "inet",
+          "ts": "string"
+        },
+        {
+          "name": "country",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "city",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "user_agent",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "error_message",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "oauth_authorization_codes",
+      "entityName": "OauthAuthorizationCode",
+      "routePath": "oauth-authorization-codes",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "provider_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code_hash",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "redirect_uri",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "expires_at",
+          "nullable": false,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "consumed_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "password_reset_tokens",
+      "entityName": "PasswordResetToken",
+      "routePath": "password-reset-tokens",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "token",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "expires_at",
+          "nullable": false,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "used_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "profile_favorite_districts",
+      "entityName": "ProfileFavoriteDistrict",
+      "routePath": "profile-favorite-districts",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "district_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "profile_followers",
+      "entityName": "ProfileFollower",
+      "routePath": "profile-followers",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "follower_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "followed_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "profile_phones",
+      "entityName": "ProfilePhone",
+      "routePath": "profile-phones",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "phone_type",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "country_code",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 5
+        },
+        {
+          "name": "phone_number",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "is_primary",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "profile_preferences",
+      "entityName": "ProfilePreference",
+      "routePath": "profile-preferences",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "receive_notifications",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "receive_email",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "receive_marketing",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "share_location",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "dark_mode",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "language_code",
+          "nullable": true,
+          "default": "'es-PE'::character varying",
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 10
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "profile_social_links",
+      "entityName": "ProfileSocialLink",
+      "routePath": "profile-social-links",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_profile_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "social_network",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 50
+        },
+        {
+          "name": "profile_url",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "push_tokens",
+      "entityName": "PushToken",
+      "routePath": "push-tokens",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_device_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "provider",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "token",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "refresh_tokens",
+      "entityName": "RefreshToken",
+      "routePath": "refresh-tokens",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "token_hash",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "expires_at",
+          "nullable": false,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "revoked_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "ip_address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "inet",
+          "ts": "string"
+        },
+        {
+          "name": "user_agent",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "rescuer_profiles",
+      "entityName": "RescuerProfile",
+      "routePath": "rescuer-profiles",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "rescued_pets",
+          "nullable": false,
+          "default": "0",
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "year_started",
+          "nullable": true,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "verification_status_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "roles",
+      "entityName": "Role",
+      "routePath": "roles",
+      "isView": false,
+      "hasIsActive": true,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "is_active",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "session_tokens",
+      "entityName": "SessionToken",
+      "routePath": "session-tokens",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "session_id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "refresh_token_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "ip_address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "inet",
+          "ts": "string"
+        },
+        {
+          "name": "user_agent",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "started_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "expires_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "closed_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "shelter_profiles",
+      "entityName": "ShelterProfile",
+      "routePath": "shelter-profiles",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "shelter_name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "pets_capacity",
+          "nullable": true,
+          "default": null,
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "foundation_year",
+          "nullable": true,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "verification_status_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "token_blacklist",
+      "entityName": "TokenBlacklist",
+      "routePath": "token-blacklists",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "jwt_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "reason",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 200
+        },
+        {
+          "name": "expires_at",
+          "nullable": false,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "user_devices",
+      "entityName": "UserDevice",
+      "routePath": "user-devices",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "device_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "platform",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 50
+        },
+        {
+          "name": "os_version",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 50
+        },
+        {
+          "name": "app_version",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 50
+        },
+        {
+          "name": "device_identifier",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "push_token",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "last_seen_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "user_profiles",
+      "entityName": "UserProfile",
+      "routePath": "user-profiles",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": true,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "community_alias",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "full_name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "profile_photo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "bio",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "reference_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "country_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "department_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "district_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "is_public",
+          "nullable": false,
+          "default": "true",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "deleted_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "user_status",
+      "entityName": "UserStatus",
+      "routePath": "user-statuses",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "created_at",
+          "nullable": true,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "users",
+      "entityName": "User",
+      "routePath": "users",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": true,
+      "hasUpdatedAt": true,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "role_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "status_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "primary_email",
+          "nullable": false,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "email_verified",
+          "nullable": false,
+          "default": "false",
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "last_login_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "updated_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "deleted_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "verification_status",
+      "entityName": "VerificationStatus",
+      "routePath": "verification-statuses",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "code",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "name",
+          "nullable": false,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": true,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "verification_tokens",
+      "entityName": "VerificationToken",
+      "routePath": "verification-tokens",
+      "isView": false,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "user_id",
+          "nullable": false,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "token",
+          "nullable": false,
+          "default": "gen_random_uuid()",
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "expires_at",
+          "nullable": false,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "used_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "created_at",
+          "nullable": false,
+          "default": "now()",
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_active_sessions",
+      "entityName": "ActiveSessionView",
+      "routePath": "views/active-sessions",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "session_id",
+      "columns": [
+        {
+          "name": "session_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "primary_email",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "ip_address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "inet",
+          "ts": "string"
+        },
+        {
+          "name": "user_agent",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "started_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        },
+        {
+          "name": "expires_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_companies",
+      "entityName": "CompanyView",
+      "routePath": "views/companies",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "company_profile_id",
+      "columns": [
+        {
+          "name": "company_profile_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "category",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "description",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "website",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "logo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "verification_status",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "primary_email",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "profile_photo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_company_locations",
+      "entityName": "CompanyLocationView",
+      "routePath": "views/company-locations",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "company_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "branch_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "country",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "department",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "district",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "latitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "longitude",
+          "nullable": true,
+          "default": null,
+          "typeorm": "numeric",
+          "ts": "number",
+          "precision": 10,
+          "scale": 7
+        },
+        {
+          "name": "is_main",
+          "nullable": true,
+          "default": null,
+          "typeorm": "boolean",
+          "ts": "boolean"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_login_audit",
+      "entityName": "LoginAuditView",
+      "routePath": "views/login-audits",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "id",
+      "columns": [
+        {
+          "name": "id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "primary_email",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "provider",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "login_identifier",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 255
+        },
+        {
+          "name": "success",
+          "nullable": true,
+          "default": null,
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "ip_address",
+          "nullable": true,
+          "default": null,
+          "typeorm": "inet",
+          "ts": "string"
+        },
+        {
+          "name": "country",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "city",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "user_agent",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "error_message",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "created_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_public_profiles",
+      "entityName": "PublicProfileView",
+      "routePath": "views/public-profiles",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "user_id",
+      "columns": [
+        {
+          "name": "user_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "profile_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "community_alias",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "full_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "profile_photo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "bio",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "reference_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "role_code",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "role_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 100
+        },
+        {
+          "name": "country",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "department",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "district",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "is_public",
+          "nullable": true,
+          "default": null,
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "email_verified",
+          "nullable": true,
+          "default": null,
+          "typeorm": "boolean",
+          "ts": "boolean"
+        },
+        {
+          "name": "created_at",
+          "nullable": true,
+          "default": null,
+          "typeorm": "timestamp",
+          "ts": "Date"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_rescuers",
+      "entityName": "RescuerView",
+      "routePath": "views/rescuers",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "rescuer_profile_id",
+      "columns": [
+        {
+          "name": "rescuer_profile_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "full_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 150
+        },
+        {
+          "name": "community_alias",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "rescued_pets",
+          "nullable": true,
+          "default": null,
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "year_started",
+          "nullable": true,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "verification_status",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "profile_photo_url",
+          "nullable": true,
+          "default": null,
+          "typeorm": "text",
+          "ts": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "vw_shelters",
+      "entityName": "ShelterView",
+      "routePath": "views/shelters",
+      "isView": true,
+      "hasIsActive": false,
+      "hasDeletedAt": false,
+      "hasUpdatedAt": false,
+      "pkColumn": "shelter_profile_id",
+      "columns": [
+        {
+          "name": "shelter_profile_id",
+          "nullable": true,
+          "default": null,
+          "typeorm": "uuid",
+          "ts": "string"
+        },
+        {
+          "name": "shelter_name",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 250
+        },
+        {
+          "name": "whatsapp",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        },
+        {
+          "name": "pets_capacity",
+          "nullable": true,
+          "default": null,
+          "typeorm": "int",
+          "ts": "number"
+        },
+        {
+          "name": "foundation_year",
+          "nullable": true,
+          "default": null,
+          "typeorm": "smallint",
+          "ts": "number"
+        },
+        {
+          "name": "verification_status",
+          "nullable": true,
+          "default": null,
+          "typeorm": "varchar",
+          "ts": "string",
+          "length": 30
+        }
+      ]
+    }
+  ]
+}
