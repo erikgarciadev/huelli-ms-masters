@@ -28,7 +28,9 @@ async function bootstrap() {
     prefix: "v",
   });
 
+  console.log(process.env.ENABLE_SWAGGER);
   if (process.env.ENABLE_SWAGGER === "true") {
+    console.log("swagger")
     const config = new DocumentBuilder()
       .setTitle("ms-bs-huelli")
       .setDescription("Microservicio CRUD huelli_db")
