@@ -28,7 +28,7 @@ async function bootstrap() {
     prefix: "v",
   });
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.ENABLE_SWAGGER === "true") {
     const config = new DocumentBuilder()
       .setTitle("ms-bs-huelli")
       .setDescription("Microservicio CRUD huelli_db")
